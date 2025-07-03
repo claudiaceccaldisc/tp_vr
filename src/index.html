@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>TP VR Médiéval</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@5.0.0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-super-hands-component@4.0.4/dist/aframe-super-hands.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.0/dist/aframe-particle-system.min.js"></script>
+    <script src="https://unpkg.com/webxr-polyfill@latest/build/webxr-polyfill.min.js"></script>
+    <script src="archery.js"></script>
+    <script src="potion.js"></script>
+  </head>
+  <body>
+    <a-scene physics="gravity: -9.8" vr-mode-ui="enabled: true">
+      <!-- Sol et ciel -->
+      <a-plane
+        rotation="-90 0 0"
+        width="50"
+        height="50"
+        src="/assets/textures/grass.jpg"
+      ></a-plane>
+      <a-sky src="/assets/textures/sky.jpg"></a-sky>
+
+      <!-- Décor médiéval -->
+      <a-assets>
+        <a-asset-item
+          id="castleModel"
+          src="/assets/models/castle-village.glb"
+        ></a-asset-item>
+        <a-asset-item id="bowModel" src="/assets/models/bow.glb"></a-asset-item>
+        <a-asset-item
+          id="arrowModel"
+          src="/assets/models/arrow.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="cauldronModel"
+          src="/assets/models/cauldron.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="tableModel"
+          src="/assets/models/table.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="flask1"
+          src="/assets/models/flask1.glb"
+        ></a-asset-item>
+        <!-- etc. -->
+      </a-assets>
+      <a-entity
+        gltf-model="#castleModel"
+        scale="0.1 0.1 0.1"
+        position="0 0 0"
+      ></a-entity>
+
+      <!-- Caméra & contrôles -->
+      <a-entity id="cameraRig" position="0 1.6 3">
+        <a-camera wasd-controls look-controls>
+          <a-cursor color="#FF0000"></a-cursor>
+        </a-camera>
+      </a-entity>
+
+      <!-- Zones de mini-jeux -->
+      <a-entity id="archery-zone" position="-2 0 -5" archery-game></a-entity>
+      <a-entity id="potion-zone" position="2 0 -5" potion-game></a-entity>
+    </a-scene>
+  </body>
+</html>

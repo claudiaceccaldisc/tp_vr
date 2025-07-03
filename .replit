@@ -1,5 +1,6 @@
+run = "npx http-server ./ -c-1 --port $PORT"
 entrypoint = "index.html"
-modules = ["web"]
+modules = ["nodejs-20", "web"]
 
 [nix]
 channel = "stable-24_11"
